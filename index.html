@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Для моєї любимки ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#ffd6e7,#fff7fb,#ffc9df);font-family:Arial,sans-serif;color:#632b45;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card{width:min(92vw,520px);padding:30px 22px;background:#fff;border-radius:28px;text-align:center;box-shadow:0 15px 50px rgba(166,75,112,.15);position:relative;z-index:2}
+.screen{display:none}.screen.active{display:block}
+h1{color:#c63870;font-size:32px;margin:12px 0 18px}h2{color:#c63870;font-size:25px}
+p{font-size:18px;line-height:1.5}
+.heart{font-size:62px;animation:pulse 1.4s infinite}
+button{display:block;width:90%;margin:12px auto;padding:15px;border:0;border-radius:15px;background:#df4f86;color:#fff;font-size:17px;font-weight:bold;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:active{transform:scale(.98)}
+input{width:90%;padding:15px;border:2px solid #edabc3;border-radius:14px;text-align:center;font-size:19px;outline:0}
+.option{background:#fff;color:#9a3c62;border:2px solid #edb3c8}
+.msg{min-height:27px;font-weight:bold;margin:8px}.good{color:#c13770}.bad{color:#d33d65}
+.progress{height:7px;background:#f4d5e1;border-radius:9px;margin-top:20px}.bar{height:100%;background:#df4f86;border-radius:9px}
+.letter{font-size:18px;line-height:1.6}
+.coupon{border:3px dashed #df4f86;background:#fff3f8;border-radius:20px;padding:22px;margin:20px 0}
+.big{font-size:36px;font-weight:900;color:#d33673}.gift{font-size:70px;animation:bounce 1s infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}@keyframes bounce{50%{transform:translateY(-9px)}}
+</style>
+</head>
+<body>
+<div class="card">
+
+<section id="s0" class="screen active">
+<div class="heart">❤️</div>
+<h1>Для моєї любимки</h1>
+<p>Тут для тебе є дещо особливе...</p>
+<p>Пройди маленький тест до кінця, і на тебе чекатиме сюрприз 🎁</p>
+<button type="button" onclick="showScreen('s1')">Почати ❤️</button>
+</section>
+
+<section id="s1" class="screen">
+<h2>🔐 Завдання №1</h2>
+<p>Введи секретний код ❤️</p>
+<p>Підказка: це дуже особлива дата...</p>
+<input id="code" inputmode="numeric" maxlength="4" placeholder="Введи код">
+<div id="m1" class="msg"></div>
+<button type="button" onclick="checkCode()">Підтвердити</button>
+<div class="progress"><div class="bar" style="width:25%"></div></div>
+</section>
+
+<section id="s2" class="screen">
+<h2>💗 Завдання №2</h2>
+<p>Як ти мене називаєш? ❤️</p>
+<input id="nickname" type="text" placeholder="Напиши тут...">
+<button type="button" onclick="nextFrom2()">Далі ❤️</button>
+<div class="progress"><div class="bar" style="width:50%"></div></div>
+</section>
+
+<section id="s3" class="screen">
+<h2>🎬 Завдання №3</h2>
+<p>На який фільм ми вперше разом сходили в кіно? 🍿❤️</p>
+<button type="button" class="option" onclick="wrongAnswer()">Аватар 2</button>
+<button type="button" class="option" onclick="rightAnswer()">Зоотопія 2 ❤️</button>
+<button type="button" class="option" onclick="wrongAnswer()">Головоломка 2</button>
+<button type="button" class="option" onclick="wrongAnswer()">Людина-павук</button>
+<div id="m3" class="msg"></div>
+<div class="progress"><div class="bar" style="width:75%"></div></div>
+</section>
+
+<section id="s4" class="screen">
+<h2>🎂 Завдання №4</h2>
+<div class="letter">
+<p><b>Любимка, вітаю тебе з Днем народження! ❤️🎂</b></p>
+<p>Бажаю тобі багато щасливих моментів, здійснення всіх твоїх мрій, радості та посмішок.</p>
+<p>Хочу, щоб у тебе все виходило, а попереду було ще дуже багато крутих моментів і подорожей.</p>
+<p><b>Я дуже тебе люблю ❤️</b></p>
+</div>
+<button type="button" onclick="showScreen('s5')">🎁 ВІДКРИТИ ПОДАРУНОК</button>
+<div class="progress"><div class="bar" style="width:100%"></div></div>
+</section>
+
+<section id="s5" class="screen">
+<div class="gift">🎁</div>
+<h1>Для тебе ❤️</h1>
+<div class="coupon">
+<p>🎟️ <b>ПОДАРУНКОВИЙ КУПОН</b></p>
+<div class="big">1 000 000<br>ПОЦІЛУНКІВ</div>
+<p><b>від мене ❤️</b></p>
+<p><i>Можна використати в будь-який час</i></p>
+<p>Без терміну дії ♾️</p>
+</div>
+<p class="good"><b>З Днем народження, любимка! ❤️</b></p>
+</section>
+
+</div>
+
+<script>
+function showScreen(id){
+  var screens=document.getElementsByClassName('screen');
+  for(var i=0;i<screens.length;i++){screens[i].classList.remove('active');}
+  document.getElementById(id).classList.add('active');
+}
+function checkCode(){
+  var value=document.getElementById('code').value.trim();
+  var msg=document.getElementById('m1');
+  if(value==='1909'){
+    msg.className='msg good';
+    msg.innerHTML='Правильно! ❤️';
+    setTimeout(function(){showScreen('s2')},500);
+  }else{
+    msg.className='msg bad';
+    msg.innerHTML='Неправильно 😏 Спробуй ще раз!';
+  }
+}
+function nextFrom2(){
+  var value=document.getElementById('nickname').value.trim();
+  if(value!==''){showScreen('s3');}
+  else{document.getElementById('nickname').focus();}
+}
+function wrongAnswer(){
+  var msg=document.getElementById('m3');
+  msg.className='msg bad';
+  msg.innerHTML='Не вгадала 😏 Спробуй ще раз!';
+}
+function rightAnswer(){
+  var msg=document.getElementById('m3');
+  msg.className='msg good';
+  msg.innerHTML='Правильно! ❤️';
+  setTimeout(function(){showScreen('s4')},500);
+}
+</script>
+</body>
+</html>
